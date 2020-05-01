@@ -2,9 +2,7 @@
 @import "./../../assets/mediaqueries.scss";
 
 body {
-  background-image: url("./../../assets/photo-1476224203421-9ac39bcb3327.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
@@ -18,35 +16,33 @@ h3 {
 // HEADER:
 .header {
   overflow: hidden;
-  padding: 0px;
-  margin: 0px;
-  max-height: fit-content;
+  background-color: $beige;
+  font-weight: bold;
+
   .logo {
     margin-top: -2em;
-    width: 150px;
-    height: 150px;
+    margin-bottom: -2em;
+    width: 130px;
+    height: 130px;
+  }
+  a {
+    float: left;
+    color: $gold;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+  
+  a:hover {
+    background-color: $beige;
   }
 }
-
 .header-right {
   float: right;
   padding-top: 15px;
 }
-
-.header a {
-  float: left;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  border-radius: 4px;
-}
-
-.header a:hover {
-  background-color: $beige;
-}
-
 .header a.active {
   text-decoration: underline;
 }
@@ -64,46 +60,108 @@ h3 {
 
 // FORM:
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -4em;
-  font-size: large;
-}
+// .container {
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: -4em;
+//   font-size: large;
+// }
 
-.form-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 10em;
-  background-color: rgba(255, 255, 255, 0.692);
+// .form-container {
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 10em;
+//   background-color: rgba(255, 255, 255, 0.692);
+//   color: $gold;
+//   font-weight: bold;
+//   padding: 2em 4em;
+//   border-radius: 5%;
+//   display: flex;
+//   flex-direction: column;
+
+//   input {
+//     margin-top: 0.5em;
+//     height: 1.7em;
+//   }
+//   a {
+//     margin: 10px;
+//     color: $gold;
+//     text-align: center;
+//     font-size: small;
+//   }
+// }
+
+// button {
+//   font-size: medium;
+//   border: none;
+//   border-radius: 8px;
+//   background-color: $gold;
+//   color: black;
+//   font-weight: bold;
+//   padding: 0.7em 1.7em;
+//   cursor: pointer;
+//   display: block;
+//   margin: 0 auto;
+// }
+
+// Polaroids
+h2 {
+  padding: 0.5em 0;
   color: $gold;
-  font-weight: bold;
-  padding: 2em 4em;
-  border-radius: 5%;
+  text-align: center;
+}
+.recipes-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-  input {
-    margin-top: 0.5em;
-    height: 1.7em;
+  .polaroid {
+    margin-bottom: 1em;
+    width: 25em;
+    overflow: hidden;
+    background-color: rgba(236, 236, 228, 0.692);
+    img {
+      width: 100%;
+      height: 80%;
+    }
+    .acontainer {
+      text-align: center;
+      padding: 3px 3px;
+    }
   }
-  a {
-    margin: 10px;
-    color: $gold;
+  .polaroid:hover {
+    background-color: rgba(221, 221, 217, 0.692);
+  }
+  
+}
+// FOOTER:
+hr {
+  margin-top: 7em;
+  margin-bottom: 2em;
+  width: 80%;
+  border: 0.5px solid $gold;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  font-weight: lighter;
+
+  img {
+    margin-top: -2em;
+    width: 130px;
+    height: 130px;
+  }
+
+  @include respond-to("sm") {
+    flex-direction: column;
     text-align: center;
-    font-size: small;
+    img {
+      margin-top: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
-button {
-  font-size: medium;
-  border: none;
-  border-radius: 8px;
-  background-color: $gold;
-  color: black;
-  font-weight: bold;
-  padding: 0.7em 1.7em;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-}

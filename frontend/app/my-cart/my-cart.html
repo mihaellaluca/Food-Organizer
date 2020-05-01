@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./my-cart.css" />
+
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
+      <div class="header-right">
+        <a href="./../home/home.html">Home</a>
+        <a href="./../most-wanted/most-wanted.html">My favourites</a>
+        <a href="./../my-cart/my-cart.html">My cart</a>
+        <a href="./../login/login.html">Logout</a>
+      </div>
+    </div>
+
+    <!-- MY CART -->
+    <div class="my-cart">
+      <h1>Shopping List</h1>
+
+      <div class="list-container">
+        <div id="newIngredient" class="list-header">
+          <input type="text" id="myInput" placeholder="Ingredient..." />
+          <button onclick="newElement()" class="addIngredient">Add</button>
+        </div>
+        <ul id="myUL">
+          <li>Fresh greens</li>
+          <li class="checked">English cucumber</li>
+          <li>Red onion</li>
+          <li>Nuts</li>
+          <li>Dressing</li>
+        </ul>
+      </div>
+      <div class="btn-div">
+        <button class="save-btn">Save</button>
+      </div>
+      <button class="clear-btn"> Clear list </button>
+    </div>
+
+    <!-- FOOTER -->
+    <hr />
+    <div class="footer-container">
+      <div id="left-foot">
+        <p>2020 KungFoods</p>
+        <p>All rights reserved</p>
+      </div>
+      <img src="./../../assets/logo_transparent.png" />
+      <div id="right-foot">
+        <p>Contact:</p>
+        <p>0123456789</p>
+      </div>
+    </div>
+
+    <script>
+      var myNodelist = document.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+      }
+
+      // Click on a close button to hide the current list item
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.display = "none";
+        };
+      }
+
+      // Add a "checked" symbol when clicking on a list item
+      var list = document.querySelector("ul");
+      list.addEventListener(
+        "click",
+        function (ev) {
+          if (ev.target.tagName === "LI") {
+            ev.target.classList.toggle("checked");
+          }
+        },
+        false
+      );
+
+      // Create a new list item when clicking on the "Add" button
+      function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === "") {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

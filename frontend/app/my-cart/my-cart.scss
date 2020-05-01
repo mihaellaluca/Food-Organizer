@@ -1,0 +1,204 @@
+@import "./../../assets/mediaqueries.scss";
+@import "./../../assets/colors.scss";
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.my-cart {
+  margin: 0;
+  padding: 0 0 15em 0;
+  background-image: url("./../../assets/list.webp");
+  .clear-btn {
+    float: right;
+    margin-right: 5em;
+    font-size: large;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.651);
+    padding: 0.5em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .clear-btn:hover {
+    border-color: rgba(235, 194, 194, 0.651);
+    background-color: rgba(235, 194, 194, 0.651);
+  }
+  @include respond-to("sm") {
+    .clear-btn {
+      margin: 0;
+    }
+    .save-btn {
+      margin-bottom: 2em;
+    }
+  }
+  
+  h1 {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    color: black;
+    text-align: center;
+  }
+}
+
+.list-container {
+  .list-header {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    cursor: pointer;
+    input {
+      height: 2em;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  ul {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.651);
+    border-radius: 12px;
+    width: 20em;
+    list-style-type: circle;
+  }
+  ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  ul li:hover {
+    font-style: italic;
+  }
+
+  ul li.checked {
+    text-decoration: line-through;
+  }
+
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+
+  .close:hover {
+    background-color: $gold;
+    color: white;
+  }
+  button {
+    border: none;
+    border-radius: 8px;
+    background-color: goldenrod;
+    color: black;
+    font-weight: bold;
+    padding: 0.6em 1.6em;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+}
+
+.btn-div {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  .save-btn {
+    border: none;
+    border-radius: 8px;
+    background-color: $gold;
+    color: white;
+    font-size: medium;
+    padding: 0.7em 1.5em;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+}
+
+// HEADER:
+.header {
+  overflow: hidden;
+  background-color: $beige;
+  font-weight: bold;
+
+  .logo {
+    margin-top: -2em;
+    margin-bottom: -2em;
+    width: 130px;
+    height: 130px;
+  }
+  a {
+    float: left;
+    color: $gold;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+
+  a:hover {
+    background-color: $beige;
+  }
+}
+
+.header-right {
+  float: right;
+  padding-top: 15px;
+}
+
+.header a.active {
+  text-decoration: underline;
+}
+
+@include respond-to("sm") {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+// FOOTER:
+hr {
+  margin-top: 7em;
+  margin-bottom: 2em;
+  width: 80%;
+  border: 0.5px solid $gold;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  img {
+    margin-top: -2em;
+    width: 130px;
+    height: 130px;
+  }
+
+  @include respond-to("sm") {
+    flex-direction: column;
+    text-align: center;
+    img {
+      margin-top: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

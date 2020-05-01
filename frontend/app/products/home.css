@@ -14,7 +14,7 @@ body {
 .filter-container .categories,
 .filter-container .specific,
 .filter-container .price {
-  margin-right: 3em;
+  margin-right: 2em;
 }
 
 .filter-container .filter-types {
@@ -61,14 +61,14 @@ body {
   height: 60%;
 }
 
-.recipes-container .recipe p#title {
+.recipes-container .recipe #title {
   font-weight: bold;
   text-align: center;
   word-wrap: break-word;
 }
 
-.recipes-container .recipe p#description {
-  max-height: 3em;
+.recipes-container .recipe #description {
+  max-height: 3.5em;
   text-align: center;
 }
 
