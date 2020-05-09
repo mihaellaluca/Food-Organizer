@@ -4,7 +4,6 @@ module.exports = function usersAccess() {
     return {
         async getAllUsers() {
             var allUsers = UsersModel.find();
-            console.log("found");
             return allUsers;
         },
         async getUserById(userId) {

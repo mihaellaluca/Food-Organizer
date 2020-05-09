@@ -18,36 +18,66 @@ module.exports = function productService() {
         async getAllProducts() {
             try {
                 var products = await repo.getAllProducts();
-                console.log(products);
-                return {
-                    data: products,
-                    statusCode: 200,
-                };
+                if (products) {
+                    return {
+                        statusCode: 200,
+                        data: products,
+                    };
+                } else
+                    return {
+                        statusCode: 404,
+                        data: { msg: "No products found." },
+                    };
             } catch (err) {
                 return {
-                    error: err,
                     statusCode: 400,
+                    data: err,
                 };
             }
         },
         async getProductById(productId) {
-            var product = await repo.getProductById(productId);
-            return product;
+            try {
+                var product = await repo.getProductById(productId);
+                if (product) {
+                    return {
+                        statusCode: 200,
+                        data: product,
+                    };
+                } else
+                    return {
+                        statusCode: 404,
+                        data: { msg: "Product not found." },
+                    };
+            } catch (err) {
+                return {
+                    statusCode: 400,
+                    data: err,
+                };
+            }
         },
         async addProduct(newProduct) {
-            var product = new ProductModel({
-                name: newProduct.name,
-                description: newProduct.description,
-                ingredients: newProduct.ingredients,
-                specific: newProduct.specific,
-                price: newProduct.price,
-                restrictions: newProduct.restrictions,
-                restaurants: newProduct.restaurants,
-                created_date: Date.now(),
-            });
-            var inserted = await repo.addProduct(product);
-            console.log("am incercat");
-            return inserted;
+            try {
+                var product = new ProductModel({
+                    name: newProduct.name,
+                    description: newProduct.description,
+                    ingredients: newProduct.ingredients,
+                    specific: newProduct.specific,
+                    price: newProduct.price,
+                    restrictions: newProduct.restrictions,
+                    restaurants: newProduct.restaurants,
+                    created_date: Date.now(),
+                });
+                var inserted = await repo.addProduct(product);
+                return {
+                    statusCode: 200,
+                    data: { msg: "Product inserted." },
+                };
+            } catch (err) {
+                return {
+                    statusCode: 400,
+                    data: err,
+                };
+            }
         },
     };
 };
