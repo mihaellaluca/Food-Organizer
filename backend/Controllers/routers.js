@@ -13,13 +13,14 @@ module.exports = async function requestListener(req, res) {
         if (key === "users") {
             // http://localhost:3000/?users
             var data = await userService.getAllUsers();
-            res.writeHead(200);
-            res.end(JSON.stringify(data));
+            res.write(JSON.stringify(data));
         }
         if (key === "users/id") {
             // http://localhost:3000/?users/id=123456
             var data = await userService.getById(queryParam[key]);
-            res.end(JSON.stringify(data));
+            res.writeHead(data.statusCode);
+            res.write(JSON.stringify(data));
+            res.end();
         }
 
         /////////////////////// PRODUCTS ////////////////////////////
@@ -27,13 +28,17 @@ module.exports = async function requestListener(req, res) {
         if (key === "products") {
             // http://localhost:3000/?products
             var data = await productService.getAllProducts();
-            res.end(JSON.stringify(data));
+            res.writeHead(data.statusCode);
+            res.write(JSON.stringify(data));
+            res.end();
         }
 
         if (key === "products/id") {
             // http://localhost:3000/?products/id=123
             var data = await productService.getProductById(queryParam[key]);
-            res.end(JSON.stringify(data));
+            res.writeHead(data.statusCode);
+            res.write(JSON.stringify(data));
+            res.end();
         }
     }
 
@@ -45,6 +50,30 @@ module.exports = async function requestListener(req, res) {
             body += chunk.toString(); // convert chunk Buffer to string
             body = JSON.parse(body); // convert string to json
 
+            //////// USERS /////////
+            if (route === "login") {
+                let request = {
+                    email: body.email,
+                    password: body.password,
+                };
+                var data = await userService.login(request);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            }
+            if (route === "register") {
+                let request = {
+                    firstName: body.firstName,
+                    lastName: body.lastName,
+                    email: body.email,
+                    password: body.password
+                };
+                var data = await userService.register(request);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            }
+
             if (route === "addUser") {
                 // http://localhost:3000/addUser
                 var user = {
@@ -54,8 +83,12 @@ module.exports = async function requestListener(req, res) {
                     password: body.password,
                 };
                 var data = await userService.addUser(user);
-                res.end(JSON.stringify(data));
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
             }
+
+            ///////// PRODUCTS //////////
 
             if (route == "addProduct") {
                 // http://localhost:3000/addProduct
@@ -70,10 +103,11 @@ module.exports = async function requestListener(req, res) {
                     restaurants: body.restaurants,
                 };
                 var data = await productService.addProduct(product);
-                res.end(JSON.stringify(data));
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
             }
-
-            
         });
     }
+    
 };
