@@ -29,6 +29,7 @@ module.exports = function productService() {
                         data: { msg: "No products found." },
                     };
             } catch (err) {
+                console.log(err);
                 return {
                     statusCode: 400,
                     data: err,
@@ -49,6 +50,7 @@ module.exports = function productService() {
                         data: { msg: "Product not found." },
                     };
             } catch (err) {
+                console.log(err);
                 return {
                     statusCode: 400,
                     data: err,
@@ -60,6 +62,7 @@ module.exports = function productService() {
                 var product = new ProductModel({
                     name: newProduct.name,
                     description: newProduct.description,
+                    category: newProduct.category,
                     ingredients: newProduct.ingredients,
                     specific: newProduct.specific,
                     price: newProduct.price,
@@ -73,11 +76,33 @@ module.exports = function productService() {
                     data: { msg: "Product inserted." },
                 };
             } catch (err) {
+                console.log(err);
                 return {
                     statusCode: 400,
                     data: err,
                 };
             }
         },
+        async getProductsByCategory(category) {
+            try {
+                var products = await repo.getProductsByCategory(category);
+                if (products) {
+                    return {
+                        statusCode: 200,
+                        data: products,
+                    };
+                } else
+                    return {
+                        statusCode: 404,
+                        data: { msg: "No products of this category found" },
+                    };
+            } catch(err) {
+                console.log(err);
+                return {
+                    statusCode: 400,
+                    data: err,
+                };
+            }
+        }
     };
 };

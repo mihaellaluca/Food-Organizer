@@ -21,5 +21,16 @@ module.exports = function usersAccess() {
                 }
             });
         },
+        async addToFavourites(userId, product) {
+            console.log(userId);
+            var user = await UsersModel.findById(userId);
+            console.log("user:", user);
+
+            var newFavourites = user.favourites.push(product);
+            console.log("newFavou", newFavourites);
+            user.updateOne({favourites: newFavourites});
+            console.log("updated");
+            return user.save();
+        }
     };
 };

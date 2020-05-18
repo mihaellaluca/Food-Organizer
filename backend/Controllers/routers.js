@@ -28,6 +28,7 @@ module.exports = async function requestListener(req, res) {
         if (key === "products") {
             // http://localhost:3000/?products
             var data = await productService.getAllProducts();
+            console.log(data);
             res.writeHead(data.statusCode);
             res.write(JSON.stringify(data));
             res.end();
@@ -36,6 +37,16 @@ module.exports = async function requestListener(req, res) {
         if (key === "products/id") {
             // http://localhost:3000/?products/id=123
             var data = await productService.getProductById(queryParam[key]);
+            res.writeHead(data.statusCode);
+            res.write(JSON.stringify(data));
+            res.end();
+        }
+
+        if (key === "products/category") {
+            // http://localhost:3000/?products/category=salad
+            var data = await productService.getProductsByCategory(
+                queryParam[key]
+            );
             res.writeHead(data.statusCode);
             res.write(JSON.stringify(data));
             res.end();
@@ -66,7 +77,8 @@ module.exports = async function requestListener(req, res) {
                     firstName: body.firstName,
                     lastName: body.lastName,
                     email: body.email,
-                    password: body.password
+                    password: body.password,
+                    favourites: [],
                 };
                 var data = await userService.register(request);
                 res.writeHead(data.statusCode);
@@ -81,8 +93,19 @@ module.exports = async function requestListener(req, res) {
                     lastName: body.lastName,
                     email: body.email,
                     password: body.password,
+                    favourites: body.favourites,
                 };
                 var data = await userService.addUser(user);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            }
+            
+            if (route === "addFavourite") {
+                var data = await userService.addToFavourites(
+                    body.userId,
+                    body.product
+                );
                 res.writeHead(data.statusCode);
                 res.write(JSON.stringify(data));
                 res.end();
@@ -95,6 +118,7 @@ module.exports = async function requestListener(req, res) {
                 var product = {
                     name: body.name,
                     photoPath: body.photoPath,
+                    category: body.category,
                     description: body.description,
                     ingredients: body.ingredients,
                     specific: body.specific,
@@ -109,5 +133,5 @@ module.exports = async function requestListener(req, res) {
             }
         });
     }
-    
+
 };

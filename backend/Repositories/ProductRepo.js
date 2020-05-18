@@ -10,6 +10,9 @@ module.exports = function productsAccess() {
         },
         async addProduct(product) {
             return ProductModel.collection.insertOne(product);
+        },
+        async getProductsByCategory(category) {
+            return ProductModel.find({category: category});
         }
     }
 }

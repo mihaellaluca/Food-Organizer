@@ -49,7 +49,7 @@ module.exports = function userService() {
                     var registeredUser = await this.addUser(request);
                     return {
                         statusCode: 200,
-                        data: registeredUser.data
+                        data: registeredUser.data,
                     };
                 }
             } catch (err) {
@@ -93,14 +93,33 @@ module.exports = function userService() {
                     lastName: newUser.lastName,
                     email: newUser.email,
                     password: newUser.password,
+                    favourites: newUser.favourites,
                     created_date: Date.now(),
                 });
                 var inserted = await repo.addUser(user);
+                console.log(inserted);
                 return {
                     statusCode: 200,
                     data: { msg: "User inserted" },
                 };
             } catch (err) {
+                console.log(err);
+                return {
+                    statusCode: 400,
+                    data: err,
+                };
+            }
+        },
+        async addToFavourites(userId, product) {
+            try {
+                var updated = await repo.addToFavourites(userId, product);
+                console.log(updated);
+                return {
+                    statusCode: 200,
+                    data: { msg: "Product added to favourites." },
+                };
+            } catch (err) {
+                console.log(err);
                 return {
                     statusCode: 400,
                     data: err,
