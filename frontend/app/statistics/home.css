@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+h3 {
+  color: black;
+  text-align: center;
+  font-size: 2.5em;
+  font-family: Oregano;
+}
+
+.header {
+  overflow: hidden;
+  background-color: rgba(228, 204, 156, 0.44);
+  font-weight: bold;
+}
+
+.header .logo {
+  margin-top: -2em;
+  margin-bottom: -2em;
+  width: 130px;
+  height: 130px;
+}
+
+.header a {
+  float: left;
+  color: #b37b0e;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+.header a:hover {
+  background-color: rgba(228, 204, 156, 0.44);
+}
+
+.header-right {
+  float: right;
+  padding-top: 15px;
+}
+
+.header a.active {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+h2 {
+  padding: 0.5em 0;
+  color: #b37b0e;
+  text-align: center;
+}
+
+.recipes-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.recipes-container .polaroid {
+  margin-bottom: 1em;
+  width: 25em;
+  overflow: hidden;
+  background-color: rgba(236, 236, 228, 0.692);
+}
+
+.recipes-container .polaroid img {
+  width: 100%;
+  height: 80%;
+}
+
+.recipes-container .polaroid .acontainer {
+  text-align: center;
+  padding: 3px 3px;
+}
+
+.recipes-container .polaroid:hover {
+  background-color: rgba(221, 221, 217, 0.692);
+}
+
+hr {
+  margin-top: 7em;
+  margin-bottom: 2em;
+  width: 80%;
+  border: 0.5px solid #b37b0e;
+}
+
+.footer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-weight: lighter;
+}
+
+.footer-container img {
+  margin-top: -2em;
+  width: 130px;
+  height: 130px;
+}
+
+@media (max-width: 767px) {
+  .footer-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .footer-container img {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/*# sourceMappingURL=home.css.map */

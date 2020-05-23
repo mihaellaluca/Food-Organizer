@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <body>
+
+
+      <!-- HEADER -->
+      <div class="header">
+          <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
+          <div class="header-right">
+              <a href="./../home/home.html">Home</a>
+              <a href="./../my-favourites/my-favourites.html">My favourites</a>
+              <a href="./../my-cart/my-cart.html">My cart</a>
+              <a href="./../login/login.html">Logout</a>
+          </div>
+      </div>
+
+
+
+      <!-- <div class="content"> -->
+      <!-- <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn" style="background-color: #f4991a;  padding: 14px 40px;">Filter</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#about">Categorie</a>
+          <a href="#base">Pret</a>
+          <a href="#blog">Specific</a>
+        </div>
+    </div> -->
+      <!-- <form class="example" class="column" action="/action_page.php">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    </form> -->
+      <!-- </div> -->
+      <!-- <br><br><br><br> -->
+      <!-- </div> -->
+      <!--
+    <div class="flex-container">
+      <div class="polaroid">
+      <img src="./../../assets/salata.jpg" alt="Salata">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+      <a href="">Salate</a>
+      </div>
+    </div>
+    <div class="polaroid">
+      <img src="./../../assets/supa.jpg" alt="Supa">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+
+      <a href="">Supe</a>
+      </div>
+    </div>
+    <div class="polaroid">
+      <img src="./../../assets/pizza.jpg" alt="Pizza" style="width:100%">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+
+      <a href="">Pizza</a>
+      </div>
+    </div>
+    <div class="polaroid">
+      <img src="./../../assets/breakfast.jpg" alt="Breakfast" style="width:100%">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+
+      <a href="">Mic-dejun</a>
+      </div>
+    </div>
+    <div class="polaroid">
+      <img src="./../../assets/tort.jpg" alt="Tort" style="width:100%">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+
+      <a href="">Dulciuri</a>
+      </div>
+    </div>
+
+    <div class="polaroid">
+      <img src="./../../assets/drinks.jpg" alt="Drinks" style="width:100%">
+      <div class="container" style="text-align: center;
+      padding: 30px 30px;">
+
+      <a href="">Bauturi</a>
+      </div>
+    </div>
+
+    </div> -->
+      
+      <div id="pdf">
+          <h2>Statistics</h2>
+
+          <div class="recipes-container">
+              <!-- afisate dinamic + link catre pagina -->
+              <div class="polaroid">
+
+                  <div class="acontainer">
+                      <br><br><br>
+                      <a>Numar de utilizatori</a>
+                      <br><br>
+                      <a> 120</a>
+                  </div>
+              </div>
+
+              <div class="polaroid">
+                  <br><br><br>
+                  <div class="acontainer">
+                      <a>Top 3 favorites</a>
+                      <ol style="text-align:left;">
+                          <li>Berry Icecream</li>
+                          <li>Greek Salad</li>
+                          <li>Pizza Quattro Formaggi</li>
+                      </ol>
+                      <br><br>
+                  </div>
+              </div>
+
+              <div class="polaroid">
+                  <div class="acontainer">
+                      <br><br><br>
+                      <a>Numar de utilizatori creati in ultima saptamana</a>
+                      <br><br>
+                      <a> 10</a>
+                  </div>
+              </div>
+
+              <div class="polaroid">
+                  <br><br><br>
+                  <div class="acontainer">
+                      <a>Most wanted ingredients</a>
+                      <ol style="text-align:left;">
+                          <li>Asparagus</li>
+                          <li>Nuts</li>
+                          <li>Fresh greens</li>
+                      </ol>
+                      <br><br>
+                  </div>
+              </div>
+          </div>
+      </div>
+          <p align="right">
+              <button onclick="printPDF();" style="background-color: #f4991a;  padding: 14px 40px;"> Get PDF </button>
+        </p>
+              
+
+      <!-- FOOTER -->
+      <hr />
+      <div class="footer-container">
+          <div id="left-foot">
+              <p>2020 KungFoods</p>
+              <p>All rights reserved</p>
+          </div>
+          <img src="./../../assets/logo_transparent.png" />
+          <div id="right-foot">
+              <p>Contact:</p>
+              <p>0123456789</p>
+          </div>
+      </div>
+
+      <script>
+
+          function printPDF() {
+              const element = document.getElementById("pdf");
+              // Choose the element and save the PDF for our user.
+              html2pdf()
+                  .from(element)
+                  .save();
+          }
+
+
+          function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+          }
+
+          function filterFunction() {
+              var input, filter, ul, li, a, i;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              div = document.getElementById("myDropdown");
+              a = div.getElementsByTagName("a");
+              for (i = 0; i < a.length; i++) {
+                  txtValue = a[i].textContent || a[i].innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      a[i].style.display = "";
+                  } else {
+                      a[i].style.display = "none";
+                  }
+              }
+          }
+      </script>
+
+
+  </body>
+</html>
