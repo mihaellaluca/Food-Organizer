@@ -64,7 +64,7 @@ h2 {
   text-align: center;
 }
 
-.recipes-container {
+.types-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -78,24 +78,24 @@ h2 {
       flex-wrap: wrap;
 }
 
-.recipes-container .polaroid {
+.types-container .polaroid {
   margin-bottom: 1em;
   width: 25em;
   overflow: hidden;
   background-color: rgba(236, 236, 228, 0.692);
 }
 
-.recipes-container .polaroid img {
+.types-container .polaroid img {
   width: 100%;
   height: 80%;
 }
 
-.recipes-container .polaroid .acontainer {
+.types-container .polaroid .acontainer {
   text-align: center;
   padding: 3px 3px;
 }
 
-.recipes-container .polaroid:hover {
+.types-container .polaroid:hover {
   background-color: rgba(221, 221, 217, 0.692);
 }
 

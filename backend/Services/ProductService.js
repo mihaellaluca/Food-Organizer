@@ -61,6 +61,7 @@ module.exports = function productService() {
             try {
                 var product = new ProductModel({
                     name: newProduct.name,
+                    photoPath: newProduct.photoPath,
                     description: newProduct.description,
                     category: newProduct.category,
                     ingredients: newProduct.ingredients,

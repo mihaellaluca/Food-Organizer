@@ -1,181 +1,137 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./home.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-  <body>
-
- 
-  <!-- HEADER -->
-  <div class="header">
-    <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
-    <div class="header-right">
-      <a href="./../home/home.html">Home</a>
-      <a href="./../my-favourites/my-favourites.html">My favourites</a>
-      <a href="./../my-cart/my-cart.html">My cart</a>
-      <a href="./../login/login.html">Logout</a>
-    </div>
-  </div>
-
-
-
- <!-- <div class="content"> -->
-
-    <!-- <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn" style="background-color: #f4991a;  padding: 14px 40px;">Filter</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#about">Categorie</a>
-          <a href="#base">Pret</a>
-          <a href="#blog">Specific</a>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./home.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="home.js"></script>
+    <body>
+        <!-- HEADER -->
+        <div class="header">
+            <img
+                class="logo"
+                src="./../../assets/logo_transparent.png "
+                alt="logo"
+            />
+            <div class="header-right">
+                <a href="./../home/home.html">Home</a>
+                <a href="./../my-favourites/my-favourites.html"
+                    >My favourites</a
+                >
+                <a href="./../my-cart/my-cart.html">My cart</a>
+                <a href="./../login/login.html">Logout</a>
+            </div>
         </div>
-    </div> -->
 
+        <h2>Our categories</h2>
 
-    <!-- <form class="example" class="column" action="/action_page.php">
-        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()"> 
-    </form> -->
+        <div class="types-container">
+            <div class="polaroid">
+                <img src="./../../assets/salata.jpg" alt="Salata" />
+                <div class="acontainer">
+                    <a
+                        onclick="saveCategory('salad')"
+                        id="salad"
+                        href="./../products/home.html"
+                        >Salad</a
+                    >
+                </div>
+            </div>
+            <div class="polaroid">
+                <img src="./../../assets/supa.jpg" alt="Supa" />
+                <div class="acontainer">
+                    <a
+                        onclick="saveCategory('soupe')"
+                        id="soupe"
+                        href="./../products/home.html"
+                        >Soupe</a
+                    >
+                </div>
+            </div>
+            <div class="polaroid">
+                <img src="./../../assets/pizza.jpg" alt="Pizza" />
+                <div class="acontainer">
+                    <a
+                        onclick="saveCategory('pizza')"
+                        id="pizza"
+                        href="./../products/home.html"
+                        >Pizza</a
+                    >
+                </div>
+            </div>
+            <div class="polaroid">
+                <img src="./../../assets/breakfast.jpg" alt="Breakfast" />
+                <div class="acontainer">
+                    <a
+                        onclick="saveCategory('breakfast')"
+                        id="breakfast"
+                        href="./../products/home.html"
+                        >Breakfast</a
+                    >
+                </div>
+            </div>
+            <div class="polaroid">
+                <img src="./../../assets/tort.jpg" alt="Tort" />
+                <div class="acontainer">
+                    <div id="mancare"></div>
+                    <a
+                        onclick="saveCategory('dessert')"
+                        id="dessert"
+                        href="./../products/home.html"
+                        >Dessert</a
+                    >
+                </div>
+            </div>
+            <div class="polaroid">
+                <img src="./../../assets/drinks.jpg" alt="Drinks" />
+                <div class="acontainer">
+                    <a
+                        onclick="saveCategory('drinks')"
+                        id="drinks"
+                        href="./../products/home.html"
+                        >Drinks</a
+                    >
+                </div>
+            </div>
+        </div>
 
-<!-- </div> -->
+        <!-- FOOTER -->
+        <hr />
+        <div class="footer-container">
+            <div id="left-foot">
+                <p>2020 KungFoods</p>
+                <p>All rights reserved</p>
+            </div>
+            <img src="./../../assets/logo_transparent.png" />
+            <div id="right-foot">
+                <p>Contact:</p>
+                <p>0123456789</p>
+            </div>
+        </div>
 
-<!-- <br><br><br><br> -->
+        <script>
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
 
-<!-- </div> -->
-<!-- 
-<div class="flex-container">
-  <div class="polaroid">
-  <img src="./../../assets/salata.jpg" alt="Salata">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-  <a href="">Salate</a>
-  </div>
-</div>
-<div class="polaroid">
-  <img src="./../../assets/supa.jpg" alt="Supa">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-
-  <a href="">Supe</a>
-  </div>
-</div>
-<div class="polaroid">
-  <img src="./../../assets/pizza.jpg" alt="Pizza" style="width:100%">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-
-  <a href="">Pizza</a>
-  </div>
-</div>
-<div class="polaroid">
-  <img src="./../../assets/breakfast.jpg" alt="Breakfast" style="width:100%">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-
-  <a href="">Mic-dejun</a>
-  </div>
-</div>
-<div class="polaroid">
-  <img src="./../../assets/tort.jpg" alt="Tort" style="width:100%">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-
-  <a href="">Dulciuri</a>
-  </div>
-</div>
-
-<div class="polaroid">
-  <img src="./../../assets/drinks.jpg" alt="Drinks" style="width:100%">
-  <div class="container" style="text-align: center;
-  padding: 30px 30px;">
-
-  <a href="">Bauturi</a>
-  </div>
-</div>
- 
-</div> -->
-
-<h2>Our categories</h2>
-
-<div class="recipes-container">
-  <!-- afisate dinamic + link catre pagina -->
-  <div class="polaroid">
-    <img src="./../../assets/salata.jpg" alt="Salata">
-    <div class="acontainer">
-      <a href="./../products/home.html">Salad</a>
-      </div>
-  </div>
-  <div class="polaroid">
-    <img src="./../../assets/supa.jpg" alt="Supa">
-    <div class="acontainer">
-      <a href="">Soupe</a>
-      </div>
-  </div>
-  <div class="polaroid">
-    <img src="./../../assets/pizza.jpg" alt="Pizza">
-    <div class="acontainer">
-    <a href="">Pizza</a>
-    </div>
-  </div>
-  <div class="polaroid">
-    <img src="./../../assets/breakfast.jpg" alt="Breakfast">
-    <div class="acontainer">
-      <a href="">Breakfast</a>
-      </div>
-  </div>
-  <div class="polaroid">
-    <img src="./../../assets/tort.jpg" alt="Tort">
-    <div class="acontainer">
-      <a href="">Dessert</a>
-      </div>
-  </div>
-  <div class="polaroid">
-    <img src="./../../assets/drinks.jpg" alt="Drinks">
-    <div class="acontainer">
-      <a href="">Drinks</a>
-      </div>
-  </div>
-
-
-</div>
-
-    <!-- FOOTER -->
-    <hr />
-    <div class="footer-container">
-      <div id="left-foot">
-        <p>2020 KungFoods</p>
-        <p>All rights reserved</p>
-      </div>
-      <img src="./../../assets/logo_transparent.png" />
-      <div id="right-foot">
-        <p>Contact:</p>
-        <p>0123456789</p>
-      </div>
-    </div>
-
-    <script>
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
-</script>
-
-
-  </body>
+            function filterFunction() {
+                var input, filter, ul, li, a, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                div = document.getElementById("myDropdown");
+                a = div.getElementsByTagName("a");
+                for (i = 0; i < a.length; i++) {
+                    txtValue = a[i].textContent || a[i].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        a[i].style.display = "";
+                    } else {
+                        a[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+    </body>
 </html>

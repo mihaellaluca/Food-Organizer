@@ -5,7 +5,7 @@ var ProductSchema = new mongoose.Schema({
     photoPath: String,
     category: String,
     description: String,
-    ingredients: [{ ingredient: String, quantity: String }],
+    ingredients: [],
     specific: String,
     price: Number,
     restrictions: String,

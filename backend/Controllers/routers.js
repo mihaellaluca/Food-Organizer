@@ -1,8 +1,10 @@
 const userService = require("../Services/UserService")();
 const productService = require("../Services/ProductService")();
+const rssService = require("./../Services/RSS")();
 const url = require("url");
 
 module.exports = async function requestListener(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     ///// GET
     if (req.method === "GET") {
         const queryParam = url.parse(req.url, true).query;
@@ -50,6 +52,10 @@ module.exports = async function requestListener(req, res) {
             res.writeHead(data.statusCode);
             res.write(JSON.stringify(data));
             res.end();
+        }
+         
+        if(key === "rss") {
+            var data = rssService.getRssFeed();
         }
     }
 
@@ -100,7 +106,7 @@ module.exports = async function requestListener(req, res) {
                 res.write(JSON.stringify(data));
                 res.end();
             }
-            
+
             if (route === "addFavourite") {
                 var data = await userService.addToFavourites(
                     body.userId,
