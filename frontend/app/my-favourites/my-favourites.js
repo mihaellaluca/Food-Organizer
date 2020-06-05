@@ -3,20 +3,19 @@ window.addEventListener("load", (event) => {
 });
 
 function bringData() {
-    var category = localStorage.getItem("category");
-    console.log("category:", category);
-    let response = fetch(`http://localhost:3000/?products/category=${category}`)
-        .then((res) => res.json())
-        .then((datas) => {
-            let products = datas.data;
-            if (products.length) {
-                createProductsElements(products);
-            } else {
-                createNoProductElements();
-            }
-        })
-        .catch((err) => console.log(err));
+    let response = fetch(`http://localhost:3000/?userFavourites/id=5eb6dfeb145d8b6d6ca7e553`)
+    .then((res) => res.json())
+    .then((datas) => {
+        let products = datas.data[0].favourites;
+        if (products.length) {
+            createProductsElements(products);
+        } else {
+            createNoProductElements();
+        }
+    })
+    .catch((err) => console.log(err));
 }
+
 
 function createProductsElements(products) {
     for (let i = 0; i < products.length; i++) {
@@ -45,6 +44,7 @@ function createProductsElements(products) {
     }
 }
 
+
 function createNoProductElements() {
     var container = document.getElementById("recipes-container");
     var productDiv = document.createElement("div");
@@ -52,7 +52,7 @@ function createNoProductElements() {
     var productPar = document.createElement("p");
     productPar.setAttribute("id", "description");
     productPar.innerHTML =
-        "There are no products of this category. Come back later and you may find some tasty food!";
+        "You have no favourite food! Check out some recipes and add some to your favouries!";
     var productImg = document.createElement("img");
     productImg.setAttribute("src", "./../../assets/funny-ninja-on-diet.jpg");
     productImg.setAttribute("class", "img-none");

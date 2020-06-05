@@ -4,7 +4,7 @@ const rssService = require("./../Services/RSS")();
 const url = require("url");
 
 module.exports = async function requestListener(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Origin", "*");
     ///// GET
     if (req.method === "GET") {
         const queryParam = url.parse(req.url, true).query;
@@ -20,6 +20,14 @@ module.exports = async function requestListener(req, res) {
         if (key === "users/id") {
             // http://localhost:3000/?users/id=123456
             var data = await userService.getById(queryParam[key]);
+            res.writeHead(data.statusCode);
+            res.write(JSON.stringify(data));
+            res.end();
+        }
+        if (key === "userFavourites/id") {
+            // http://localhost:3000/?/id=123456
+            var data = await userService.getUserFavourites(queryParam[key]);
+            console.log("done executing from routers.",data);
             res.writeHead(data.statusCode);
             res.write(JSON.stringify(data));
             res.end();
@@ -53,8 +61,8 @@ module.exports = async function requestListener(req, res) {
             res.write(JSON.stringify(data));
             res.end();
         }
-         
-        if(key === "rss") {
+
+        if (key === "rss") {
             var data = rssService.getRssFeed();
         }
     }
@@ -66,7 +74,7 @@ module.exports = async function requestListener(req, res) {
         req.on("data", async (chunk) => {
             body += chunk.toString(); // convert chunk Buffer to string
             body = JSON.parse(body); // convert string to json
-
+            console.log("BODY", body);
             //////// USERS /////////
             if (route === "login") {
                 let request = {
@@ -108,6 +116,7 @@ module.exports = async function requestListener(req, res) {
             }
 
             if (route === "addFavourite") {
+                console.log("body:", body);
                 var data = await userService.addToFavourites(
                     body.userId,
                     body.product
@@ -139,5 +148,4 @@ module.exports = async function requestListener(req, res) {
             }
         });
     }
-
 };

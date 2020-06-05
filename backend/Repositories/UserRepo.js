@@ -11,7 +11,7 @@ module.exports = function usersAccess() {
             return user;
         },
         async getUserByEmail(email) {
-            var user = UsersModel.findOne({email: email});
+            var user = UsersModel.findOne({ email: email });
             return user;
         },
         async addUser(user) {
@@ -28,9 +28,21 @@ module.exports = function usersAccess() {
 
             var newFavourites = user.favourites.push(product);
             console.log("newFavou", newFavourites);
-            user.updateOne({favourites: newFavourites});
+            user.updateOne({ favourites: newFavourites });
             console.log("updated");
             return user.save();
-        }
+        },
+        async getUserFavourites(userId) {
+            console.log(userId);
+            var favourites = await UsersModel.find({ _id: userId }, "favourites",
+                (err, docs) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            );
+            console.log("Favourites", favourites);
+            return favourites;
+        },
     };
 };

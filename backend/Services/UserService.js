@@ -126,5 +126,27 @@ module.exports = function userService() {
                 };
             }
         },
+        async getUserFavourites(userId) {
+            try {
+                var favourites = await repo.getUserFavourites(userId);
+                if (favourites == null) {
+                    return {
+                        statusCode: 404,
+                        data: { msg: "No favourites" },
+                    };
+                } else {
+                    return {
+                        statusCode: 200,
+                        data: favourites,
+                    };
+                }
+            } catch (err) {
+                console.log(err);
+                return {
+                    statusCode: 400,
+                    data: { msg: err },
+                };
+            }
+        },
     };
 };

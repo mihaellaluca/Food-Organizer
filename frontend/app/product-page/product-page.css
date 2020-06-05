@@ -50,7 +50,7 @@ body {
 .mid-container {
   background-color: rgba(228, 204, 156, 0.44);
   padding: 3em 10em;
-  font-size: large;
+  font-size: medium;
 }
 
 @media (max-width: 767px) {
@@ -62,7 +62,7 @@ body {
 .bottom-container {
   padding: 3em 10em;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
 }
 
 @media (max-width: 767px) {
@@ -156,5 +156,12 @@ hr {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+#map {
+  margin-left: auto;
+  margin-right: auto;
+  height: 25em;
+  width: 30em;
 }
 /*# sourceMappingURL=product-page.css.map */

@@ -37,6 +37,8 @@ body {
     text-align: center;
 
     .recipe {
+        display: flex;
+        flex-direction: column;
         background-color: rgba(255, 243, 227, 0.664);
         margin: 1em;
         padding: 0.5em;
@@ -48,10 +50,10 @@ body {
             height: 25em;
         }
         img {
-            width: 100%;
-            height: 55%;
+            width: 20em;
+            height: 15em;
         }
-        #title {
+        .title {
             font-weight: bold;
             word-wrap: break-word;
         }
