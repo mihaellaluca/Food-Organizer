@@ -1,21 +1,31 @@
 window.addEventListener("load", (event) => {
+    isAdmin();
     bringData();
 });
 
 function bringData() {
     var category = localStorage.getItem("category");
+    let token = localStorage.getItem("token");
     console.log("category:", category);
-    let response = fetch(`http://localhost:3000/?products/category=${category}`)
-        .then((res) => res.json())
-        .then((datas) => {
-            let products = datas.data;
-            if (products.length) {
-                createProductsElements(products);
-            } else {
-                createNoProductElements();
-            }
-        })
-        .catch((err) => console.log(err));
+    console.log("token", token);
+
+    if (!token) {
+        console.log("Login first!");
+    } else {
+        let response = fetch(
+            `http://localhost:3000/?products/category=${category}`
+        )
+            .then((res) => res.json())
+            .then((datas) => {
+                let products = datas.data;
+                if (products.length) {
+                    createProductsElements(products);
+                } else {
+                    createNoProductElements();
+                }
+            })
+            .catch((err) => console.log(err));
+    }
 }
 
 function createProductsElements(products) {
@@ -60,4 +70,29 @@ function createNoProductElements() {
     productDiv.appendChild(productPar);
     productDiv.appendChild(productImg);
     container.appendChild(productDiv);
+}
+
+function isAdmin() {
+    let admin = localStorage.getItem("admin");
+    if (admin === "true") {
+        let statistics = document.createElement("a");
+        statistics.setAttribute("href", "./../statistics/home.html");
+        statistics.innerText = "Statistics";
+        let myCart = document.getElementById("my-cart");
+        myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
+    }
+}
+
+function checkAuthorization() {
+    var token = localStorage.getItem("token");
+    if(token) { // login succeeded
+        document.getElementById("home").setAttribute("href", "./../home/home.html");
+    }
+    else{
+        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
+    }
+}
+
+function logout(){
+    localStorage.clear();
 }

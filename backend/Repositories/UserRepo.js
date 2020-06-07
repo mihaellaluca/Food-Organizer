@@ -24,8 +24,13 @@ module.exports = function usersAccess() {
         async addToFavourites(userId, product) {
             console.log(userId);
             var user = await UsersModel.findById(userId);
-            console.log("user:", user);
-
+            for (let i = 0; i < user.favourites.length; i++) {
+                console.log("fav:", user.favourites[i]);
+                if (user.favourites[i]._id === product._id) {
+                    console.log("cant add same element");
+                    return null;
+                }
+            }
             var newFavourites = user.favourites.push(product);
             console.log("newFavou", newFavourites);
             user.updateOne({ favourites: newFavourites });
@@ -34,7 +39,9 @@ module.exports = function usersAccess() {
         },
         async getUserFavourites(userId) {
             console.log(userId);
-            var favourites = await UsersModel.find({ _id: userId }, "favourites",
+            var favourites = await UsersModel.find(
+                { _id: userId },
+                "favourites",
                 (err, docs) => {
                     if (err) {
                         console.log(err);

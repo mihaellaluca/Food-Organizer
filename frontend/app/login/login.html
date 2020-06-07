@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./login.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./login.css" />
+    <script src="./login.js"></script>
 
-  <body>
-    <div class="header">
-      <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
-      <div class="header-right">
-        <a href="./../home/home.html">Home</a>
-        <a href="./../login/login.html">Login</a>
-        <a href="./../register/register.html">Register</a>
-      </div>
-    </div>
+    <body>
+        <div class="header">
+            <img
+                class="logo"
+                src="./../../assets/logo_transparent.png "
+                alt="logo"
+            />
+            <div class="header-right" id="header-right">
+                <a href="" id="home" onclick="checkAuthorization()">Home</a>
+                <a href="./login.html" id="login">Login</a>
+                <a href="./../register/register.html" id="register">Register</a>
+            </div>
+        </div>
 
-    <div class="container">
-      <h3>Better food Better mood</h3>
-      <div class="form-container">
-        <form>
-          <label for="email">Email:</label> <br />
-          <input name="email" id="email" />
-          <br />
-          <br />
-          <label for="pass">Password:</label><br />
-          <input name="pass" id="pass" type="password" />
-          <br />
-          <br />
-          <button type="submit" onclick="">Login</button>
-        </form>
-        <a href="./../register/register.html">Register here</a>
-      </div>
-    </div>
-  </body>
+        <div class="container">
+            <h3>Better food Better mood</h3>
+            <div class="form-container">
+                <form>
+                    <label for="email">Email:</label> <br />
+                    <input name="email" id="email" type="email" />
+                    <br />
+                    <br />
+                    <label for="pass">Password:</label><br />
+                    <input name="pass" id="password" type="password" />
+                    <br />
+                    <br />
+                    <button>
+                        <a href="./../home/home.html" id="submitForm">Login</a>
+                    </button>
+                </form>
+                <a href="./../register/register.html">Register here</a>
+            </div>
+        </div>
+    </body>
 </html>

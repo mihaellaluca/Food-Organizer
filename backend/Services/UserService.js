@@ -1,6 +1,7 @@
 var repo = require("./../Repositories/UserRepo.js")();
 var UsersModel = require("./../Models/UsersModel");
 const mongoose = require("mongoose");
+var jwt = require("jsonwebtoken");
 
 module.exports = function userService() {
     mongoose.connect(
@@ -20,14 +21,26 @@ module.exports = function userService() {
                 var user = await repo.getUserByEmail(request.email);
                 if (user) {
                     if (request.password === user.password) {
+                        console.log("Login succesful.");
+                        console.log("user::", user._id);
+                        const token = jwt.sign({ id: user._id }, "secret", {
+                            expiresIn: "2h",
+                        });
+                        console.log("token", token);
                         return {
                             statusCode: 200,
                             data: user,
+                            token: token,
+                        };
+                    } else {
+                        return {
+                            statusCode: 404,
+                            data: { msg: "Wrong password." },
                         };
                     }
                 } else
                     return {
-                        statusCode: 400,
+                        statusCode: 404,
                         data: { msg: "Wrong email or password." },
                     };
             } catch (err) {
@@ -93,11 +106,11 @@ module.exports = function userService() {
                     lastName: newUser.lastName,
                     email: newUser.email,
                     password: newUser.password,
-                    favourites: newUser.favourites,
+                    favourites: [],
                     created_date: Date.now(),
                 });
                 var inserted = await repo.addUser(user);
-                console.log(inserted);
+
                 return {
                     statusCode: 200,
                     data: { msg: "User inserted" },
@@ -113,7 +126,13 @@ module.exports = function userService() {
         async addToFavourites(userId, product) {
             try {
                 var updated = await repo.addToFavourites(userId, product);
-                console.log(updated);
+                console.log("up:", updated);
+                if(updated === null) {
+                    return {
+                        statusCode: 400,
+                        data: { msg:"Product already exists in favourites."}
+                    }
+                }
                 return {
                     statusCode: 200,
                     data: { msg: "Product added to favourites." },

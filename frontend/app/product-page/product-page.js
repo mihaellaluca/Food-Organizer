@@ -1,4 +1,5 @@
 window.addEventListener("load", (event) => {
+    isAdmin();
     fetchData();
 });
 
@@ -91,7 +92,7 @@ function createElements(product) {
 
 function addToFavourites(product) {
     let data = {
-        userId: "5eb6dfeb145d8b6d6ca7e553",
+        userId: localStorage.getItem("userId"),
         product: product,
     };
 
@@ -100,12 +101,40 @@ function addToFavourites(product) {
         body: JSON.stringify(data),
     })
         .then((data) => {
-            console.log(data);
+            if(data.statusCode === 200)
+                window.alert("Product added to your favourites!");
+            else window.alert("Product already in your favourites");
         })
         .catch((err) => {
             console.log(err);
         });
 }
+
+function isAdmin() {
+    let admin = localStorage.getItem("admin");
+    if (admin === "true") {
+        let statistics = document.createElement("a");
+        statistics.setAttribute("href", "./../statistics/home.html");
+        statistics.innerText = "Statistics";
+        let myCart = document.getElementById("my-cart");
+        myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
+    }
+}
+
+function checkAuthorization() {
+    var token = localStorage.getItem("token");
+    if(token) { // login succeeded
+        document.getElementById("home").setAttribute("href", "./../home/home.html");
+    }
+    else{
+        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
+    }
+}
+
+function logout(){
+    localStorage.clear();
+}
+
 
 // MAP
 

@@ -25,9 +25,8 @@ module.exports = async function requestListener(req, res) {
             res.end();
         }
         if (key === "userFavourites/id") {
-            // http://localhost:3000/?/id=123456
+            // http://localhost:3000/userFavourites/id=123456
             var data = await userService.getUserFavourites(queryParam[key]);
-            console.log("done executing from routers.",data);
             res.writeHead(data.statusCode);
             res.write(JSON.stringify(data));
             res.end();
@@ -37,11 +36,17 @@ module.exports = async function requestListener(req, res) {
 
         if (key === "products") {
             // http://localhost:3000/?products
-            var data = await productService.getAllProducts();
-            console.log(data);
-            res.writeHead(data.statusCode);
-            res.write(JSON.stringify(data));
-            res.end();
+            if (checkToken() === true) {
+                var data = await productService.getAllProducts();
+                console.log(data);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            } else {
+                res.writeHead("403");
+                res.write("Restricted area. Please sign in first");
+                res.end();
+            }
         }
 
         if (key === "products/id") {
@@ -77,6 +82,7 @@ module.exports = async function requestListener(req, res) {
             console.log("BODY", body);
             //////// USERS /////////
             if (route === "login") {
+                // http://localhost:3000/login
                 let request = {
                     email: body.email,
                     password: body.password,
@@ -87,6 +93,7 @@ module.exports = async function requestListener(req, res) {
                 res.end();
             }
             if (route === "register") {
+                // http://localhost:3000/register
                 let request = {
                     firstName: body.firstName,
                     lastName: body.lastName,
@@ -95,6 +102,7 @@ module.exports = async function requestListener(req, res) {
                     favourites: [],
                 };
                 var data = await userService.register(request);
+                console.log("user", data);
                 res.writeHead(data.statusCode);
                 res.write(JSON.stringify(data));
                 res.end();

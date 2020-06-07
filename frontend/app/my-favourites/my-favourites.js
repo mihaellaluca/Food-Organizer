@@ -1,9 +1,11 @@
 window.addEventListener("load", (event) => {
+    isAdmin();
     bringData();
 });
 
 function bringData() {
-    let response = fetch(`http://localhost:3000/?userFavourites/id=5eb6dfeb145d8b6d6ca7e553`)
+    let userId = localStorage.getItem("userId");
+    let response = fetch(`http://localhost:3000/?userFavourites/id=${userId}`)
     .then((res) => res.json())
     .then((datas) => {
         let products = datas.data[0].favourites;
@@ -60,4 +62,29 @@ function createNoProductElements() {
     productDiv.appendChild(productPar);
     productDiv.appendChild(productImg);
     container.appendChild(productDiv);
+}
+
+function isAdmin() {
+    let admin = localStorage.getItem("admin");
+    if (admin === "true") {
+        let statistics = document.createElement("a");
+        statistics.setAttribute("href", "./../statistics/home.html");
+        statistics.innerText = "Statistics";
+        let myCart = document.getElementById("my-cart");
+        myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
+    }
+}
+
+function checkAuthorization() {
+    var token = localStorage.getItem("token");
+    if(token) { // login succeeded
+        document.getElementById("home").setAttribute("href", "./../home/home.html");
+    }
+    else{
+        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
+    }
+}
+
+function logout(){
+    localStorage.clear();
 }

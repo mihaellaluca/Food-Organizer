@@ -3,18 +3,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="./most-wanted.css" />
-
+  <script src="./most-wanted.js"></script>
   <body>
     <!-- HEADER -->
     <div class="header">
-      <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
+      <img class="logo" src="./../../assets/logo_transparent.png" alt="logo" />
       <div class="header-right">
-        <a href="./../home/home.html">Home</a>
-        <a href="./../my-favourites/my-favourites.html">My favourites</a>
-        <a href="">My cart</a>
-        <a href="./../login/login.html">Logout</a>
+          <a href="./../home/home.html" id="home" onclick="checkAuthorization()">Home</a>
+          <a href="./../my-favourites/my-favourites.html" id="my-favourites" onclick="checkAuthorization()">My favourites</a>
+          <a href="./../my-cart/my-cart.html" id="my-cart" onclick="checkAuthorization()">My cart</a>
+          <a href="./../login/login.html" onclick="logout()">Logout</a>
       </div>
-    </div>
+  </div>
 
     <!-- MOST-WANTED-PAGE -->
     <div class="top-container">

@@ -5,90 +5,21 @@
   <link rel="stylesheet" href="./home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="html2pdf.bundle.min.js"></script>
+  <script src="statistics.js"></script>
 
   <body>
 
 
       <!-- HEADER -->
       <div class="header">
-          <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
-          <div class="header-right">
-              <a href="./../home/home.html">Home</a>
-              <a href="./../my-favourites/my-favourites.html">My favourites</a>
-              <a href="./../my-cart/my-cart.html">My cart</a>
-              <a href="./../login/login.html">Logout</a>
-          </div>
-      </div>
-
-
-
-      <!-- <div class="content"> -->
-      <!-- <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn" style="background-color: #f4991a;  padding: 14px 40px;">Filter</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#about">Categorie</a>
-          <a href="#base">Pret</a>
-          <a href="#blog">Specific</a>
+        <img class="logo" src="./../../assets/logo_transparent.png" alt="logo" />
+        <div class="header-right">
+            <a href="./../home/home.html" id="home" onclick="checkAuthorization()">Home</a>
+            <a href="./../my-favourites/my-favourites.html" id="my-favourites" onclick="checkAuthorization()">My favourites</a>
+            <a href="./../my-cart/my-cart.html" id="my-cart" onclick="checkAuthorization()">My cart</a>
+            <a href="./../login/login.html" onclick="logout()">Logout</a>
         </div>
-    </div> -->
-      <!-- <form class="example" class="column" action="/action_page.php">
-        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    </form> -->
-      <!-- </div> -->
-      <!-- <br><br><br><br> -->
-      <!-- </div> -->
-      <!--
-    <div class="flex-container">
-      <div class="polaroid">
-      <img src="./../../assets/salata.jpg" alt="Salata">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-      <a href="">Salate</a>
-      </div>
     </div>
-    <div class="polaroid">
-      <img src="./../../assets/supa.jpg" alt="Supa">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-
-      <a href="">Supe</a>
-      </div>
-    </div>
-    <div class="polaroid">
-      <img src="./../../assets/pizza.jpg" alt="Pizza" style="width:100%">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-
-      <a href="">Pizza</a>
-      </div>
-    </div>
-    <div class="polaroid">
-      <img src="./../../assets/breakfast.jpg" alt="Breakfast" style="width:100%">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-
-      <a href="">Mic-dejun</a>
-      </div>
-    </div>
-    <div class="polaroid">
-      <img src="./../../assets/tort.jpg" alt="Tort" style="width:100%">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-
-      <a href="">Dulciuri</a>
-      </div>
-    </div>
-
-    <div class="polaroid">
-      <img src="./../../assets/drinks.jpg" alt="Drinks" style="width:100%">
-      <div class="container" style="text-align: center;
-      padding: 30px 30px;">
-
-      <a href="">Bauturi</a>
-      </div>
-    </div>
-
-    </div> -->
       
       <div id="pdf">
           <h2>Statistics</h2>
