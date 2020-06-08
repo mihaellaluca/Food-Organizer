@@ -2,6 +2,7 @@ const userService = require("../Services/UserService")();
 const productService = require("../Services/ProductService")();
 const rssService = require("./../Services/RSS")();
 const url = require("url");
+const xml2js = require("xml2js");
 
 module.exports = async function requestListener(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -68,7 +69,14 @@ module.exports = async function requestListener(req, res) {
         }
 
         if (key === "rss") {
-            var data = rssService.getRssFeed();
+            // http://localhost:3000/?rss
+            var data = (await rssService)
+                .getRssFeed()
+                .then((data) => {
+                    res.write(JSON.stringify(data));
+                    res.end();
+                })
+                .catch((err) => console.log(err));
         }
     }
 

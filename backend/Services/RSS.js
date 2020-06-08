@@ -4,7 +4,7 @@ var userRepo = require("./../Repositories/UserRepo")();
 var feedOptions = {
     title: "Most Wanted",
     description: "The most popular products on KungFood page",
-    feed_url: "",
+    feed_url: "http://localhost:3000/rss",
     site_url: "",
 };
 
@@ -13,38 +13,44 @@ var feed = new Rss(feedOptions);
 module.exports = async function RssPopularity() {
     return {
         async getRssFeed() {
+            console.log("getting rss");
             //get top  most popular products and add them to feed
             var allUsers = await userRepo.getAllUsers();
-            console.log(allUsers);
+            console.log("all users:", allUsers);
 
             var top = [];
             var statistic = [];
 
             allUsers.forEach((user) => {
+                console.log("rss user:", user);
                 let userFavourites = user.favourites;
-                userFavourites.forEach((food) => {
-                    if (food in top) {
-                        top[food]++;
+                console.log("fav", userFavourites);
+                userFavourites.forEach((product) => {
+                    console.log("food", product.name);
+                    if (product.name in top) {
+                        top[product.name]++;
                     } else {
-                        top[food] = 1;
+                        top[product.name] = 1;
                     }
                 });
             });
-            for (let food in top) {
-                statistic.push([food, top[food]]);
+            for (let productName in top) {
+                statistic.push([productName, top[productName]]);
             }
             statistic.sort((a, b) => {
                 return b[1] - a[1];
             });
+            console.log("statistic", statistic);
 
             for (let i = 1; i <= 3; i++) {
+                // TOP 3 PRODUCTS
                 feed.item({
-                    title: `Product ${i}: ${statistic[i]}`,
+                    title: ` Product ${i}: ${statistic[i]} `,
                     date: Date.now(),
                 });
             }
-
-            return (xml = feed.xml({indent: true}));
+            console.log("feedy", feed);
+            return feed.xml({ indent: true });
         },
     };
 };

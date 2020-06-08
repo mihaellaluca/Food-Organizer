@@ -101,9 +101,10 @@ function addToFavourites(product) {
         body: JSON.stringify(data),
     })
         .then((data) => {
-            if(data.statusCode === 200)
+            console.log(data);
+            if(data.status === 200)
                 window.alert("Product added to your favourites!");
-            else window.alert("Product already in your favourites");
+            else window.alert("Product already in your favourites!");
         })
         .catch((err) => {
             console.log(err);

@@ -1,6 +1,16 @@
-window.addEventListener("load", (event)=> {
+window.addEventListener("load", (event) => {
     isAdmin();
+    getRssFeed();
 });
+
+function getRssFeed() {
+    fetch("http://localhost:3000/?rss")
+        .then((response) => response.text())
+        .then((data) => {
+            console.log(data);
+            document.getElementById("feed").innerText = data;
+        });
+}
 
 function isAdmin() {
     let admin = localStorage.getItem("admin");
@@ -15,15 +25,18 @@ function isAdmin() {
 
 function checkAuthorization() {
     var token = localStorage.getItem("token");
-    if(token) { // login succeeded
-        document.getElementById("home").setAttribute("href", "./../home/home.html");
-    }
-    else{
-        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
+    if (token) {
+        // login succeeded
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../home/home.html");
+    } else {
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../forbidden/forbidden.html");
     }
 }
 
-function logout(){
+function logout() {
     localStorage.clear();
 }
-
