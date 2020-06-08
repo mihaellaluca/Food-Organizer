@@ -1,5 +1,7 @@
 window.addEventListener("load", (event) => {
     isAdmin();
+    canSeeMostWanted();
+    canAddProduct();
 });
 
 function saveCategory(category) {
@@ -19,17 +21,43 @@ function isAdmin() {
         myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
     }
 }
-
-function checkAuthorization() {
-    var token = localStorage.getItem("token");
-    if(token) { // login succeeded
-        document.getElementById("home").setAttribute("href", "./../home/home.html");
+function canSeeMostWanted() {
+    if (localStorage.getItem("admin") === "true") {
+        let h2 = document.getElementById("h2");
+        let a = document.createElement("a");
+        a.setAttribute("href", "./../most-wanted/most-wanted.html");
+        a.setAttribute("id", "most-wanted");
+        a.innerText = "Check the most popular food";
+        h2.parentNode.insertBefore(a, h2.nextSibling);
     }
-    else{
-        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
+}
+function canAddProduct() {
+    if (localStorage.getItem("admin") === "true") {
+        let h2 = document.getElementById("most-wanted");
+        let a = document.createElement("a");
+        a.setAttribute("href", "./../add-product/add-product.html");
+        a.setAttribute("id", "add-product");
+        a.innerText = "Add a new product";
+        let br = document.createElement("br");
+        h2.parentNode.insertBefore(br, h2.nextSibling);
+        br.parentNode.insertBefore(a, br.nextSibling);
     }
 }
 
-function logout(){
+function checkAuthorization() {
+    var token = localStorage.getItem("token");
+    if (token) {
+        // login succeeded
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../home/home.html");
+    } else {
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../forbidden/forbidden.html");
+    }
+}
+
+function logout() {
     localStorage.clear();
 }

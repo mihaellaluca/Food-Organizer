@@ -4,22 +4,53 @@ body {
   font-weight: bold;
 }
 
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: large;
+}
+
 h3 {
+  padding: 0.5em 0;
   color: black;
   text-align: center;
-  font-size: 2.5em;
-  font-family: Oregano;
 }
 
-#most-wanted, #add-product {
+.form-container {
   color: #b37b0e;
-  padding: 12px;
-  text-decoration: none;
-  font-size: medium;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#most-wanted:hover, #add-product:hover {
-  text-decoration: underline;
+.form-container input {
+  margin-top: 0.5em;
+  height: 1.7em;
+}
+
+.form-container a {
+  color: black;
+}
+
+button {
+  font-size: medium;
+  border: none;
+  border-radius: 8px;
+  background-color: #b37b0e;
+  color: black;
+  font-weight: bold;
+  padding: 0.7em 1.7em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
 }
 
 .header {
@@ -69,48 +100,6 @@ h3 {
   }
 }
 
-h2 {
-  padding: 0.5em 0;
-  color: #b37b0e;
-  text-align: center;
-}
-
-.types-container {
-  margin-top: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.types-container .polaroid {
-  margin-bottom: 1em;
-  width: 25em;
-  overflow: hidden;
-  background-color: rgba(236, 236, 228, 0.692);
-}
-
-.types-container .polaroid img {
-  width: 100%;
-  height: 80%;
-}
-
-.types-container .polaroid .acontainer {
-  text-align: center;
-  padding: 3px 3px;
-}
-
-.types-container .polaroid:hover {
-  background-color: rgba(221, 221, 217, 0.692);
-}
-
 hr {
   margin-top: 7em;
   margin-bottom: 2em;
@@ -151,4 +140,4 @@ hr {
     margin-right: auto;
   }
 }
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=add-product.css.map */

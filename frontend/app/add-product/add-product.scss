@@ -6,21 +6,44 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
 h3 {
+    padding: 0.5em 0;
     color: black;
     text-align: center;
-    font-size: 2.5em;
-    font-family: Oregano;
+  }
+.form-container {
+    color: $gold;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        margin-top: 0.5em;
+        height: 1.7em;
+    }
+    a {
+        color: black;
+    }
 }
 
-#most-wanted, #add-product {
-    color: $gold;
-    padding: 12px;
-    text-decoration: none;
+button {
     font-size: medium;
-}
-#most-wanted:hover,#add-product:hover {
-    text-decoration: underline;
+    border: none;
+    border-radius: 8px;
+    background-color: $gold;
+    color: black;
+    font-weight: bold;
+    padding: 0.7em 1.7em;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
 }
 
 // HEADER:
@@ -68,37 +91,6 @@ h3 {
     }
 }
 
-// Polaroids
-h2 {
-    padding: 0.5em 0;
-    color: $gold;
-    text-align: center;
-}
-.types-container {
-    margin-top: 1em;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    .polaroid {
-        margin-bottom: 1em;
-        width: 25em;
-        overflow: hidden;
-        background-color: rgba(236, 236, 228, 0.692);
-        img {
-            width: 100%;
-            height: 80%;
-        }
-        .acontainer {
-            text-align: center;
-            padding: 3px 3px;
-        }
-    }
-    .polaroid:hover {
-        background-color: rgba(221, 221, 217, 0.692);
-    }
-}
 // FOOTER:
 hr {
     margin-top: 7em;

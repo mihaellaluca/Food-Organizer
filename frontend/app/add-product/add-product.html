@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./add-product.css" />
+    <script src="./add-product.js"></script>
+
+    <body>
+        <!-- HEADER -->
+        <div class="header">
+            <img
+                class="logo"
+                src="./../../assets/logo_transparent.png"
+                alt="logo"
+            />
+            <div class="header-right">
+                <a
+                    href="./../home/home.html"
+                    id="home"
+                    onclick="checkAuthorization()"
+                    >Home</a
+                >
+                <a
+                    href="./../my-favourites/my-favourites.html"
+                    id="my-favourites"
+                    onclick="checkAuthorization()"
+                    >My favourites</a
+                >
+                <a
+                    href="./../my-cart/my-cart.html"
+                    id="my-cart"
+                    onclick="checkAuthorization()"
+                    >My cart</a
+                >
+                <a href="./../login/login.html" onclick="logout()">Logout</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>Add a new product</h3>
+            <div class="form-container">
+                <form>
+                    <label for="name">Name:</label> <br />
+                    <input name="name" id="name" />
+                    <br />
+                    <br />
+                    <label for="photoPath">Photo Path:</label> <br />
+                    <input name="photoPath" id="photoPath" placeholder="./../../assets/photo.jpg"/>
+                    <br />
+                    <br />
+                    <label for="description">Description:</label> <br />
+                    <input name="description" id="description" />
+                    <br />
+                    <br />
+                    <label for="category">Category:</label><br />
+                    <input name="category" id="category" />
+                    <br />
+                    <br />
+                    <label for="specific">Specific:</label><br />
+                    <input name="specific" id="specific" />
+                    <br />
+                    <br />
+                    <label for="price">Estimated price:</label><br />
+                    <input name="price" id="price" />
+                    <br />
+                    <br />
+                    <label for="restrictions">Restrictions:</label><br />
+                    <input name="restrictions" id="restrictions" />
+                    <br />
+                    <br />
+                    <label for="ingredients">Ingredients:</label><br />
+                    <input name="ingredients" id="ingredients" placeholder="Ingredient1, Ingredient2, ... "/>
+                    <br />
+                    <br />
+                    <label for="restaurants">Restaurants:</label><br />
+                    <input name="restaurants" id="restaurants" placeholder="Restaurant1, Restaurant2, ... "/>
+                    <br />
+                    <br />
+                    <button>
+                        <a href="./../home/home.html" id="submit">Submit</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <hr />
+        <div class="footer-container">
+            <div id="left-foot">
+                <p>2020 KungFoods</p>
+                <p>All rights reserved</p>
+            </div>
+            <img src="./../../assets/logo_transparent.png" />
+            <div id="right-foot">
+                <p>Contact:</p>
+                <p>0123456789</p>
+            </div>
+        </div>
+    </body>
+</html>

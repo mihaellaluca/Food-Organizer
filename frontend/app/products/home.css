@@ -3,6 +3,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#quote {
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  font-family: cursive;
+}
+
 .filter-container {
   background-image: url("./../../assets/kitchen.jpg");
   background-repeat: no-repeat;
