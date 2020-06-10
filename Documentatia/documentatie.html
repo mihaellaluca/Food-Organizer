@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORG</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <article resource="#" typeof="schema:ScholarlyArticle">
+      <header>
+        <h1 property="schema:name">Food Organizer</h1>
+        <p role="doc-subtitle" property="schema:alternateName"></p>
+      </header>
+      <meta property="schema:accessibilityFeature" content="alternativeText" />
+      <meta property="schema:accessibilityFeature" content="MathML" />
+      <meta property="schema:accessibilityHazard" content="noFlashingHazard" />
+
+      <section typeof="sa:AuthorsList">
+        <h3>Authors</h3>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <meta property="schema:familyName" content="Mihaela Luca" />
+            <span property="schema:name">Mihaela Luca</span>
+          </li>
+        </ul>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person"></span>
+            <meta property="schema:familyName" content="Alexandru Prajica" />
+            <span property="schema:name">Alexandru Prajica</span>
+          </li>
+        </ul>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person">
+              <meta property="schema:familyName" content="Manuela Horduna" />
+              <span property="schema:name">Manuela Horduna</span>
+            </span>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Project Description</h2>
+        <p>
+            Kung Food este o platforma pentru iubitori ai gastronomiei, unde pot cauta reteta unor feluri de mancare variate, precum si localuri din zona unde se poate gasi un anumit produs de pe site. De asemenea, platforma permite alcatuirea unei liste de cumparaturi, dar si posibilitatea de a face o lista de feluri de mancare favorite sau de a posta in grupul de care apartine.
+        </p>
+      </section>
+      <section>
+        <h3>Tehnologii folosite:</h3>
+        <ul>
+          <li>HTML</li>
+          <li>CSS/SCSS</li>
+          <li>JavaScript</li>
+          <li>Node.Js</li>
+          <li>MongoDb/Mongoose (Cloud Atlas MongoDb)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Utilizari ale site-ului</h3>
+        Ca utilizator normal: <br><br>
+        ⦁	Autentificare (login si register) ca utilizator normal sau admin <br>
+        ⦁	Posibilitatea utilizatorului de a alege dintr-o serie de categorii <br>
+        ⦁	Posibilitatea utilizatorului de a vedea mancarurile dintr-o anumita categorie <br>
+        ⦁	Posibilitatea utilizatorului de a vedea detalii despre un produs si o harta in sprijinul localizarii restaurantelor <br>
+        ⦁	Posibilitatea de a vedea si actualiza lista de feluri de mancare favorite intr-o pagina speciala pentru a putea reveni cu usurinta la acestea <br>
+        ⦁	Posibilitatea de a alcatui o lista de cumparaturi, unde utilizatorii pot adauga sau sterge elemente <br>
+        ⦁	Posibilitatea de a adauga un produs pe pagina grupului din care face parte utilizatorul <br>
+        ⦁	Posibilitatea de a vedea produsele postate pe pagina grupului din care face parte utilizatorul <br>
+        <br>
+        Ca utilizator cu drepturi de admin, in plus: <br><br>
+        ⦁	Posibilitatea adminului de a vedea cateva statistici si de a le salva in format pdf <br>
+        ⦁	Posibilitatea adminului de a adauga un produs <br>
+        ⦁	Posibilitatea adminului de a vedea un top al favoritelor in format xml <br>
+
+      </section>
+      <section>
+        <h3>Baza de date si API</h3>
+        <section>
+          <h4>API-uri externe</h4>
+          ⦁ Google Maps API <br>
+        </section>
+        <section>
+          <h4>Baza de date (NO SQL)</h4>
+          <ul>
+            Tabela User:
+            <br><img src="users.png" alt="tabela">
+          </ul>
+          <ul>
+           Tabela Products
+           <br><img src="products.png" alt="tabela">
+          </ul>
+          <ul>
+            Tabela Groups
+            <br><img src="groups.png" alt="tabela">
+        </section>
+      </section>
+      <section>
+        <h2>Arhitectura:</h2>
+        <h3></h3>
+        <figure typeof="sa:image">
+          <img src="./diagrame.png" alt="diagram" />
+        </figure>
+        <br />
+       
+      </section>
+      <section>
+        <h3>References:</h3>
+        <a href="./ghid.html"> GHID DE FOLOSIRE A APLICATIEI </a>
+        <p>
+          Project GitHub page:
+          <a href="https://github.com/mihaellaluca/Proiect-TW">
+            https://github.com/mihaellaluca/Proiect-TW 
+            </a>
+        </p>
+      </section>
+    </article>
+  </body>
+</html>
