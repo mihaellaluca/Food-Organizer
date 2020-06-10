@@ -105,6 +105,17 @@ module.exports = async function requestListener(req, res) {
                 })
                 .catch((err) => console.log(err));
         }
+
+        if (key === "statistics") {
+            // http://localhost:3000/?statistics
+            var data = await (await rssService)
+                .getStatistics()
+                .then((data) => {
+                    res.write(JSON.stringify(data));
+                    res.end();
+                })
+                .catch((err) => console.log(err));
+        }
     }
 
     ///// POST
@@ -123,10 +134,9 @@ module.exports = async function requestListener(req, res) {
                     password: body.password,
                 };
                 var data = await userService.login(request);
-                if(data.statusCode === 200) {
+                if (data.statusCode === 200) {
                     loggedIn = true;
-                }
-                else {
+                } else {
                     loggedIn = false;
                 }
                 res.writeHead(data.statusCode);
@@ -203,7 +213,12 @@ module.exports = async function requestListener(req, res) {
                 var productName = body.name;
                 var productPhoto = body.photoPath;
                 var groupId = body.groupId;
-                var data = await groupService.postToGroup(productId, productName, productPhoto,groupId);
+                var data = await groupService.postToGroup(
+                    productId,
+                    productName,
+                    productPhoto,
+                    groupId
+                );
                 res.writeHead(data.statusCode);
                 res.write(JSON.stringify(data));
                 res.end();
@@ -227,6 +242,4 @@ module.exports = async function requestListener(req, res) {
     }
 };
 
-function checkToken() {
-
-}
+function checkToken() {}

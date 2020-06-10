@@ -52,5 +52,25 @@ module.exports = async function RssPopularity() {
             console.log("feedy", feed);
             return feed.xml({ indent: true });
         },
+
+        async getStatistics() {
+            let allUsers = await userRepo.getAllUsers();
+            let nrOfUsers = (await allUsers).length;
+            let nrOfUsersInLastDays = 0;
+            allUsers.forEach((user) => {
+                let date1 = new Date(user.created_date);
+                let today = Date.now();
+                let date2 = new Date(today);
+                var diffDays = date2.getDate() - date1.getDate();
+                if (diffDays <= 10) {
+                    nrOfUsersInLastDays++;
+                }
+            });
+
+            return {
+                nrOfUsers: nrOfUsers,
+                nrOfUsersInLastDays: nrOfUsersInLastDays,
+            };
+        },
     };
 };

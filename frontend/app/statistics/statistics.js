@@ -1,17 +1,19 @@
 window.addEventListener("load", (event) => {
-    isAdmin();
+    let admin = localStorage.getItem("admin");
+    if (admin === "true") {
+        isAdmin();
+        fetchStatistics();
+    }
 });
 
 function isAdmin() {
-    let admin = localStorage.getItem("admin");
-    if (admin === "true") {
-        let statistics = document.createElement("a");
-        statistics.setAttribute("href", "./../statistics/home.html");
-        statistics.innerText = "Statistics";
-        let myCart = document.getElementById("my-cart");
-        myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
-    }
+    let statistics = document.createElement("a");
+    statistics.setAttribute("href", "./../statistics/home.html");
+    statistics.innerText = "Statistics";
+    let myCart = document.getElementById("my-cart");
+    myCart.parentNode.insertBefore(statistics, myCart.nextSibling);
 }
+
 function checkAuthorization() {
     var token = localStorage.getItem("token");
     if (token) {
@@ -28,4 +30,17 @@ function checkAuthorization() {
 
 function logout() {
     localStorage.clear();
+}
+
+function fetchStatistics() {
+    fetch("http://localhost:3000/?statistics")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let nrOfUsers = document.getElementById("nrOfUsers");
+            nrOfUsers.innerHTML = data.nrOfUsers;
+            let lastUsers = document.getElementById("lastUsers");
+            lastUsers.innerHTML = data.nrOfUsersInLastDays;
+        })
+        .catch((err) => console.log(err));
 }
