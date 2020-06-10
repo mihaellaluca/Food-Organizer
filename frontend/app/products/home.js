@@ -7,7 +7,6 @@ function bringData() {
     var category = localStorage.getItem("category");
     let token = localStorage.getItem("token");
     console.log("category:", category);
-    console.log("token", token);
 
     if (!token) {
         console.log("Login first!");

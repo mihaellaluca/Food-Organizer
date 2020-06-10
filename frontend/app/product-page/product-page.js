@@ -4,13 +4,11 @@ window.addEventListener("load", (event) => {
 });
 
 function fetchData() {
-    console.log("fetching product");
     var productId = localStorage.getItem("productId");
     var response = fetch(`http://localhost:3000/?products/id=${productId}`)
         .then((res) => res.json())
         .then((datas) => {
             let product = datas.data;
-            console.log(product.name);
             createElements(product);
         })
         .catch((err) => console.log(err));
@@ -23,6 +21,12 @@ function createElements(product) {
     h.appendChild(t);
     var productImage = document.createElement("img");
     productImage.setAttribute("src", product.photoPath);
+    productImage.setAttribute("alt","photoPath");
+    productImage.setAttribute("id","productImage");
+
+    topContainer.appendChild(h);
+    topContainer.appendChild(productImage);
+
     var button = document.createElement("button");
     button.setAttribute("type", "submit");
     button.setAttribute("class", "add-favourite");
@@ -31,9 +35,23 @@ function createElements(product) {
         addToFavourites(product); //add to user's favourites
     });
 
-    topContainer.appendChild(h);
-    topContainer.appendChild(productImage);
+    console.log("getting group");
+    if (localStorage.getItem("group")) {
+        let addToGroupButton = document.createElement("button");
+        addToGroupButton.setAttribute("type","submit");
+        addToGroupButton.setAttribute("class","add-group");
+        addToGroupButton.innerHTML = "Post in group";
+        addToGroupButton.addEventListener("click", (event) => {
+            addToGroup(product); //add to group feed
+        });
+        let photoPath = document.getElementById("productImage");
+        photoPath.parentNode.insertBefore(addToGroupButton, photoPath.nextSibling);
+        
+    }
+
+   
     topContainer.appendChild(button);
+    
 
     var midContainer = document.getElementById("mid-container");
     var description = document.createElement("h3");
@@ -101,7 +119,6 @@ function addToFavourites(product) {
         body: JSON.stringify(data),
     })
         .then((data) => {
-            console.log(data);
             if(data.status === 200)
                 window.alert("Product added to your favourites!");
             else window.alert("Product already in your favourites!");
@@ -109,6 +126,31 @@ function addToFavourites(product) {
         .catch((err) => {
             console.log(err);
         });
+}
+
+function addToGroup(product) {
+    let productId = product._id;
+    let groupId = localStorage.getItem("group");
+    let data = {
+        productId: productId,
+        groupId: groupId,
+        name: product.name,
+        photoPath: product.photoPath
+    }
+    console.log("prodId",productId);
+    const response = fetch("http://localhost:3000/addToGroup", {
+        method: "POST",
+        body: JSON.stringify(data),
+    })
+        .then((data) => {
+            if(data.status === 200)
+                window.alert("Product added to your group!");
+            else window.alert("Product already in your group!");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
 }
 
 function isAdmin() {

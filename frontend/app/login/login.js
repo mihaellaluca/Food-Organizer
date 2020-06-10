@@ -1,8 +1,14 @@
 window.addEventListener("load", (event) => {
-    let butt = document.getElementById("submitForm");
-    butt.addEventListener("click", (event) => {
+    let input = document.getElementById("password");
+    let a = document.createElement("a");
+    a.setAttribute("id","link");
+    a.setAttribute("href","./../home/home.html");
+    a.innerText = "Login";
+    input.parentNode.insertBefore(a, password.nextSibling);
+    a.addEventListener("click", (event) => {
         event.preventDefault();
         loginUser();
+        
     });
 });
 
@@ -14,7 +20,6 @@ function loginUser() {
             email: email,
             password: password,
         };
-        console.log(credentials);
         fetch("http://localhost:3000/login", {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -22,13 +27,13 @@ function loginUser() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.statusCode === 200) {
-                    console.log(data.data._id);
                     let userId = data.data._id;
                     let token = data.token;
                     let admin = data.data.admin;
                     localStorage.setItem("userId", userId);
                     localStorage.setItem("token", token);
                     localStorage.setItem("admin", JSON.stringify(admin));
+                    checkUserInGroup();
                 } else if (data.statusCode === 404) {
                     window.alert(JSON.stringify(data.data.msg));
                 } else if (data.statusCode === 400) {
@@ -43,13 +48,27 @@ function loginUser() {
     }
 }
 
-
 function checkAuthorization() {
     var token = localStorage.getItem("token");
-    if(token) { // login succeeded
-        document.getElementById("home").setAttribute("href", "./../home/home.html");
+    if (token) {
+        // login succeeded
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../home/home.html");
+    } else {
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../forbidden/forbidden.html");
     }
-    else{
-        document.getElementById("home").setAttribute("href","./../forbidden/forbidden.html");
-    }
+}
+
+function checkUserInGroup() {
+    let userId = localStorage.getItem("userId");
+    fetch(`http://localhost:3000/?checkUserInAGroup/id=${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.statusCode === 200) {
+                localStorage.setItem("group", data.data);
+            }
+        });
 }

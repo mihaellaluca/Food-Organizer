@@ -9,7 +9,7 @@
     <div class="header">
       <img class="logo" src="./../../assets/logo_transparent.png " alt="logo" />
       <div class="header-right">
-        <a href="./../home/home.html">Home</a>
+        <a href="./../home/home.html" id="home" onclick="checkAuthorization()">Home</a>
         <a href="./../login/login.html">Login</a>
         <a href="./../register/register.html">Register</a>
       </div>
@@ -21,20 +21,12 @@
         <form>
           <label for="firstName">First Name:</label> <br />
           <input name="firstName" id="firstName" />
-          <br />
-          <br />
           <label for="lastName">Last Name:</label> <br />
           <input name="lastName" id="lastName" />
-          <br />
-          <br />
           <label for="email">Email:</label> <br />
           <input name="email" id="email" type="email" />
-          <br />
-          <br />
           <label for="pass">Password:</label><br />
           <input name="pass" id="password" type="password" />
-          <br />
-          <br />
           <button><a href="./../login/login.html" id="submitRegister">Register</a></button>
         </form>
         <a href="./../login/login.html">Login here</a>

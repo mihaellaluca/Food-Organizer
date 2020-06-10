@@ -56,7 +56,7 @@ h3 {
     .header a {
         float: none;
         display: block;
-        text-align: left;
+        text-align: center;
     }
     .header-right {
         float: none;
@@ -71,43 +71,56 @@ h3 {
     font-size: large;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+}
 .form-container {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5em;
     width: 10em;
     background-color: rgba(255, 255, 255, 0.692);
     color: $gold;
     font-weight: bold;
     padding: 2em 4em 0.5em;
-    border-radius: 5%;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
 
     input {
-        margin-top: 0.5em;
+        margin-bottom: 2em;
         height: 1.7em;
     }
+    input:hover {
+        border: 2px solid $gold;
+    }
     a {
-        margin: 10px;
+        cursor: pointer;
+        margin: 1em 0;
         color: $gold;
         text-align: center;
         font-size: small;
     }
-    #submitForm{
-      color: black;
-  }
+    #link {
+        background-color: rgba(214, 129, 19, 0.788);
+        color: black;
+        padding: 1em 3em;
+        border-radius: 8px;
+        text-decoration: underline;
+        margin: 0 auto;
+    }
 }
 
-button {
-    font-size: medium;
-    border: none;
-    border-radius: 8px;
-    background-color: $gold;
-    color: black;
-    font-weight: bold;
-    padding: 0.7em 1.7em;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-
-}
+// button {
+//     font-size: medium;
+//     border: none;
+//     border-radius: 8px;
+//     background-color: $gold;
+//     color: black;
+//     font-weight: bold;
+//     padding: 0.7em 1.7em;
+//     cursor: pointer;
+//     display: block;
+//     margin: 0 auto;
+// }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./group-feed.css" />
+    <script src="group-feed.js"></script>
+
+    <body>
+        <!-- HEADER -->
+        <div class="header">
+            <img
+                class="logo"
+                src="./../../assets/logo_transparent.png"
+                alt="logo"
+            />
+            <div class="header-right">
+                <a
+                    href="./../home/home.html"
+                    id="home"
+                    onclick="checkAuthorization()"
+                    >Home</a
+                >
+                <a
+                    href="./../my-favourites/my-favourites.html"
+                    id="my-favourites"
+                    onclick="checkAuthorization()"
+                    >My favourites</a
+                >
+                <a
+                    href="./../my-cart/my-cart.html"
+                    id="my-cart"
+                    onclick="checkAuthorization()"
+                    >My cart</a
+                >
+                <a href="./../group-feed/group-feed.html" id="group-feed">Group Feed</a>
+                <a href="./../login/login.html" onclick="logout()">Logout</a>
+            </div>
+        </div>
+
+
+        <div class="container" id="container"></div>
+
+        
+        <!-- FOOTER -->
+        <hr />
+        <div class="footer-container">
+            <div id="left-foot">
+                <p>2020 KungFoods</p>
+                <p>All rights reserved</p>
+            </div>
+            <img src="./../../assets/logo_transparent.png" alt="logo"/>
+            <div id="right-foot">
+                <p>Contact:</p>
+                <p>0123456789</p>
+            </div>
+        </div>
+    </body>
+</html>

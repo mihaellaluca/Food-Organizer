@@ -1,16 +1,17 @@
 const userService = require("../Services/UserService")();
 const productService = require("../Services/ProductService")();
 const rssService = require("./../Services/RSS")();
+const groupService = require("./../Services/GroupService")();
 const url = require("url");
-const xml2js = require("xml2js");
 
 module.exports = async function requestListener(req, res) {
+    var loggedIn = false;
     res.setHeader("Access-Control-Allow-Origin", "*");
     ///// GET
     if (req.method === "GET") {
         const queryParam = url.parse(req.url, true).query;
         var key = Object.keys(queryParam)[0];
-
+        console.log(key);
         /////////////////////// USERS ////////////////////////////////
 
         if (key === "users") {
@@ -78,6 +79,32 @@ module.exports = async function requestListener(req, res) {
                 })
                 .catch((err) => console.log(err));
         }
+
+        if (key === "group/id") {
+            // http://localhost:3000/?group/id=123
+            let groupId = queryParam[key];
+            var data = groupService
+                .getGroupById(groupId)
+                .then((data) => {
+                    console.log(data);
+                    res.write(JSON.stringify(data));
+                    res.end();
+                })
+                .catch((err) => console.log(err));
+        }
+
+        if (key === "checkUserInAGroup/id") {
+            // http://localhost:3000/?checkUserInAGroup/id=123
+            let userId = queryParam[key];
+            var data = await groupService
+                .checkUserInAGroup(userId)
+                .then((data) => {
+                    console.log(data);
+                    res.write(JSON.stringify(data));
+                    res.end();
+                })
+                .catch((err) => console.log(err));
+        }
     }
 
     ///// POST
@@ -96,6 +123,12 @@ module.exports = async function requestListener(req, res) {
                     password: body.password,
                 };
                 var data = await userService.login(request);
+                if(data.statusCode === 200) {
+                    loggedIn = true;
+                }
+                else {
+                    loggedIn = false;
+                }
                 res.writeHead(data.statusCode);
                 res.write(JSON.stringify(data));
                 res.end();
@@ -132,7 +165,6 @@ module.exports = async function requestListener(req, res) {
             }
 
             if (route === "addFavourite") {
-                console.log("body:", body);
                 var data = await userService.addToFavourites(
                     body.userId,
                     body.product
@@ -162,6 +194,39 @@ module.exports = async function requestListener(req, res) {
                 res.write(JSON.stringify(data));
                 res.end();
             }
+
+            ///////// GROUPS /////////
+
+            if (route === "addToGroup") {
+                // http://localhost:3000/addToGroup
+                var productId = body.productId;
+                var productName = body.name;
+                var productPhoto = body.photoPath;
+                var groupId = body.groupId;
+                var data = await groupService.postToGroup(productId, productName, productPhoto,groupId);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            }
+
+            if (route === "addGroup") {
+                // http://localhost:3000/addGroup
+                var request = {
+                    name: body.name,
+                    membersId: body.membersId,
+                    productsId: body.productsId,
+                };
+                console.log(request);
+                var data = await groupService.addGroup(request);
+                console.log("data", data);
+                res.writeHead(data.statusCode);
+                res.write(JSON.stringify(data));
+                res.end();
+            }
         });
     }
 };
+
+function checkToken() {
+
+}

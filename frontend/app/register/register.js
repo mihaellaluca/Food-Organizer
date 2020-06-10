@@ -35,3 +35,17 @@ function registerUser() {
         window.alert("Please provide the information needed!");
     }
 }
+
+function checkAuthorization() {
+    var token = localStorage.getItem("token");
+    if (token) {
+        // login succeeded
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../home/home.html");
+    } else {
+        document
+            .getElementById("home")
+            .setAttribute("href", "./../forbidden/forbidden.html");
+    }
+}
